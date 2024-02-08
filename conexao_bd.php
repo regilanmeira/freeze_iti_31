@@ -30,6 +30,7 @@ function executarComandoRetornarID($sql) {
     if (mysqli_query($conn, $sql)) {
         $ultimo_id = mysqli_insert_id($conn);
         return $ultimo_id;
+        
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         return 0;
@@ -39,6 +40,7 @@ function executarComandoRetornarID($sql) {
 function retornarDados($sql) {
     global $conn;
     $resultado = mysqli_query($conn, $sql);
+    
 
     if (mysqli_num_rows($resultado) > 0) {
         return $resultado;

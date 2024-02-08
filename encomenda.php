@@ -41,7 +41,7 @@ and open the template in the editor.
         ?>
 
         <!-- CORPO -->
-        <form action="" method="post">
+        <form action="encomenda_salvar.php" method="post">
 
             <div id="body" class="contact">
                 <div class="footer">
@@ -61,10 +61,22 @@ and open the template in the editor.
 
 
                             <li>
-
+                                
                                 <select class="dropdown" name="listaProduto">
-                                    <option></option>
+                                <?php
+                                    include 'conexao_bd.php';
+                                    $sql = "SELECT * FROM produto";
+                                    $resultado = retornarDados($sql);
+
+                                   while($linha = mysqli_fetch_assoc($resultado))
+                                   {
+
+                                  
+                                ?>    
+                                    <option><?php echo $linha["descricao"] ?></option>
+                                <?php } ?>
                                 </select>
+                                
                             </li>
                             <li>
                                 <select name="listaQuantidade"  class="dropdown">
@@ -81,8 +93,18 @@ and open the template in the editor.
                             <li>
 
                                 <select name="listaFormaPagamento"  class="dropdown">
-                                    <option></option>
+                                <?php 
+                                $sql = "SELECT * FROM forma_pagamento";
+                                $resultado = retornarDados($sql);
 
+                                while($linha = mysqli_fetch_assoc($resultado))
+                                {
+
+                                
+                                ?>   
+                                <option><?php echo $linha["descricao"]; ?></option>
+                                
+                                <?php } ?>     
                                 </select>
 
                             </li>
